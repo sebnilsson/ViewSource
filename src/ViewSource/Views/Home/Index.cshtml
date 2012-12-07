@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.BodyClass = "home";
+    ViewBag.Title = "View Source for URL";
+}
+
+<h1>@ViewBag.Title</h1>
+
+@using (Html.BeginRouteForm("Result", FormMethod.Get))
+{
+    @Html.TextBox("url")
+    <input type="submit" value="View Source"/>
+}

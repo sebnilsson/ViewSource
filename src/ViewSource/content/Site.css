@@ -1,0 +1,144 @@
+﻿body {
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: #000;
+}
+
+a, a:link, a:hover, a:active, a:visited {
+    color: #00e;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.no-display {
+    display: none;
+}
+
+#container {
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+#top {
+    color: #ccc;
+    text-align: right;
+    padding: 0.5em 0 0.25em 0;
+}
+#top a, #top a:link, #top a:hover, #top a:active, #top a:visited {
+    color: #ccc;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+#main {
+    background-color: #fff;
+    padding: 1em;
+}
+
+#main h1, #main div, #main form {
+    padding: 0.25em 0;
+}
+#main h1 {
+    padding-top: 0;
+}
+
+#footer {
+    background-color: #555;
+    color: #ccc;
+    font-size: 0.8em;
+    padding: 0.25em 0 0.5em 0;
+    text-align: center;
+}
+#footer a, #footer a:link, #footer a:hover, #footer a:active, #footer a:visited {
+    color: #ccc;
+    text-decoration: none;
+}
+
+h1 {
+    font-size: 1.8em;
+    margin: 0;
+    overflow: hidden;
+}
+h1 a, h1 a:link, h1 a:hover, h1 a:active, h1 a:visited {
+    text-decoration: none;
+    font-size: 0.8em;
+    font-weight: normal;
+}
+
+body.error h1 {
+    color: #ff0000;
+}
+
+#url {
+    margin: 0 0 0.25em 0;
+}
+#source-text, #url {
+    font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+    font-size: 0.9em;
+    width: 99%;
+}
+#source-text {
+    height: 450px;
+}
+#source-text.nowrap {
+    white-space: nowrap;
+    overflow:    scroll;
+    overflow-y:  hidden;
+    overflow-x:  scroll;
+    overflow:    -moz-scrollbars-horizontal;
+}
+
+#error {
+    font-style: italic;
+}
+#error h2 {
+    margin-top: 0;
+}
+
+body.result {
+    font-style: italic;
+}
+
+/* Smartphone */
+@media screen and (max-width: 320px) {
+    body {
+        font-size: 0.6em;
+    }
+    #main {
+        padding: 0.75em 2px;
+    }
+    #source-text, #url {
+        width: 97%;
+    }
+}
+/* Low-res */
+@media screen and (max-width: 540px) {
+    body {
+        font-size: 0.7em;
+    }
+    #main {
+        padding: 0.75em 0.25em;
+    }
+    #source-text, #url {
+        width: 98%;
+    }
+}
+/* Tablet */
+@media screen and (max-width: 768px) {
+    body {
+        font-size: 0.8em;
+    }
+}
+/* Netbook */
+@media screen and (max-width: 1024px) {
+    body {
+        font-size: 0.9em;
+    }
+}

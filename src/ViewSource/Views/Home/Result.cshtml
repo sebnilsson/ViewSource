@@ -1,0 +1,47 @@
+﻿@model ViewSource.Models.SourceResult
+
+@{
+    ViewBag.BodyClass = "result";
+    const string TitlePrefix = "View Source:";
+    ViewBag.Title = string.Format("{0} {1}", TitlePrefix, Model.Url);
+    
+    var encodings = new List<SelectListItem>
+                        {
+                            new SelectListItem { Text = "UTF-8", Value = "utf8" },
+                            new SelectListItem { Text = "ANSI / Western Europe", Value = "western-europe" },
+                            new SelectListItem { Text = "ASCII", Value = "ascii" },
+                            new SelectListItem { Text = "Unicode", Value = "unicode" },
+                        };
+    encodings.ForEach(x => x.Selected = (x.Value == Model.Encoding));
+}
+
+<h1>@TitlePrefix <a href="@Model.Url">@Model.Url</a></h1>
+
+@*<div class="index-nav">
+    @Html.RouteLink("View source for other URL", "Home")
+</div>*@
+
+<div>
+@using (Html.BeginRouteForm("Result", FormMethod.Get))
+{
+    @Html.Hidden("url", Model.Url)
+    @Html.DropDownList("encoding", encodings)
+    <noscript>
+        <input type="submit" value="Resubmit" />
+    </noscript>
+}
+</div>
+
+<div id="source">
+    @Html.TextArea("source-text", Model.Source, new { wrap = "off", autocomplete = "off" })
+</div>
+<div>
+    @Html.CheckBox("nowrap", true) @Html.Label("nowrap", "No wrap")
+</div>
+<div>
+    @Html.CheckBox("beautify", true) @Html.Label("beautify", "Beautify HTML")
+</div>
+
+<div class="index-nav">
+    @Html.RouteLink("View source for other URL", "Home")
+</div>

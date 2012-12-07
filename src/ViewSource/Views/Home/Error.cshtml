@@ -1,0 +1,16 @@
+﻿@model string
+
+@{
+    ViewBag.Title = "Error";
+    ViewBag.BodyClass = "error";
+}
+
+<h1>Error</h1>
+
+<div id="error">
+    @Model
+</div>
+
+<div class="index-nav">
+    @Html.RouteLink("View source for other URL", "Home")
+</div>
