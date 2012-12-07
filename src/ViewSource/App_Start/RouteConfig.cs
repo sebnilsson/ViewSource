@@ -19,6 +19,11 @@ namespace ViewSource
                 url: "",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional });
 
+            routes.MapSeoRoute(
+                name: "Assets",
+                url: "assets/{action}/{id}",
+                defaults: new { controller = "Assets", action = "Index", id = UrlParameter.Optional });
+
             //routes.MapSeoRoute(
             //    name: "Default",
             //    url: "{controller}/{action}/{id}",
