@@ -17,9 +17,9 @@
 
 <h1>@TitlePrefix <a href="@Model.Url">@Model.Url</a></h1>
 
-@*<div class="index-nav">
-    @Html.RouteLink("View source for other URL", "Home")
-</div>*@
+<div class="index-nav">
+    @Html.RouteLink("View source for another URL", "Home")
+</div>
 
 <div>
 @using (Html.BeginRouteForm("Result", FormMethod.Get))
@@ -33,7 +33,10 @@
 </div>
 
 <div id="source">
-    @Html.TextArea("source-text", Model.Source, new { wrap = "off", autocomplete = "off" })
+    @Html.TextArea("source-text", Model.Source, new { autocomplete = "off", @class = "nowrap", wrap = "off",  })
+</div>
+<div>
+    (@Model.Size)
 </div>
 <div>
     @Html.CheckBox("nowrap", true) @Html.Label("nowrap", "No wrap")
@@ -41,7 +44,45 @@
 <div>
     @Html.CheckBox("beautify", true) @Html.Label("beautify", "Beautify HTML")
 </div>
+@if (Model.Links.Any() || Model.ScriptLinks.Any())
+{
+    <div>
+        <h2>Navigate further on page</h2>
+        @if (Model.ScriptLinks.Any())
+        {
+            <h3>Scripts</h3>
+            <ul>
+                @foreach (var link in Model.ScriptLinks)
+                {
+                    <li>
+                        @Html.RouteLink(link.Title, "Result", new { url = link.Url.ToString() })
+                        @if (!string.IsNullOrWhiteSpace(link.Type))
+                        {
+                            <text>(@link.Type)</text>
+                        }
+                    </li>
+                }
+            </ul>
+        }
+        @if (Model.Links.Any())
+        {
+            <h3>Links</h3>
+            <ul>
+                @foreach (var link in Model.Links)
+                {
+                    <li>
+                        @Html.RouteLink(link.Title, "Result", new { url = link.Url.ToString() })
+                        @if (!string.IsNullOrWhiteSpace(link.Type))
+                        {
+                            <text>(@link.Type)</text>
+                        }
+                    </li>
+                }
+            </ul>
+        }
+    </div>
+}
 
 <div class="index-nav">
-    @Html.RouteLink("View source for other URL", "Home")
+    @Html.RouteLink("View source for another URL", "Home")
 </div>

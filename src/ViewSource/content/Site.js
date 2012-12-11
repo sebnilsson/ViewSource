@@ -3,42 +3,42 @@
 
 (function(window, document, undefined) {
     'use strict';
-    
+
     var $url, $sourceText, $nowrap, $beautify;
     $url = $('#url');
-    
+
     var isResultPage = $('body').hasClass('result');
     var isHomePage = $('body').hasClass('home');
-    
+
     if (isHomePage) {
         $url.select().focus();
         return;
     } else if (!isResultPage) {
         return;
     }
-
+    
     $sourceText = $('#source-text');
     $nowrap = $('#nowrap');
     $beautify = $('#beautify');
 
     var viewSource = {
-        initEncoding: function () {
-            $('#encoding').change(function () {
+        initEncoding: function() {
+            $('#encoding').change(function() {
                 $(this).attr('readonly', 'readonly');
                 $('form').submit();
             });
         },
 
-        initNowrap: function () {
-            $nowrap.click(function () {
+        initNowrap: function() {
+            $nowrap.click(function() {
                 var checked = $(this).is(':checked');
                 $sourceText.toggleClass('nowrap', checked);
-                $sourceText.attr('wrap', function () {
+                $sourceText.attr('wrap', function() {
                     return checked ? 'off' : null;
                 });
             });
         },
-        
+
         isSourceTextHeightAdjusted: false,
         initSourceTextHeight: function() {
             var sourceHeight = $sourceText.height();
@@ -48,10 +48,25 @@
                 viewSource.isSourceTextHeightAdjusted = true;
             }
         },
-        
+
         initBeautify: function() {
             var originalSource = $sourceText.val();
+
+            var isHtml = viewSource.looksLikeHtml(originalSource);
+            if (isHtml) {
+                viewSource.showHtml(originalSource);
+            } else {
+                viewSource.showNonHtml(originalSource);
+            }
+        },
+        looksLikeHtml: function(source) {
+            var trimmed = source.replace(/^[ \t\n\r]+/, '');
+            var commentMark = '<' + '!-' + '-';
+            return (trimmed && (trimmed.substring(0, 1) === '<' && trimmed.substring(0, 4) !== commentMark));
+        },
+        showHtml: function(originalSource) {
             var beautifiedSource = style_html(originalSource);
+
             $sourceText.val(beautifiedSource);
 
             $beautify.click(function() {
@@ -60,12 +75,16 @@
                 $sourceText.val(source);
             });
         },
-        
+        showNonHtml: function(originalSource) {
+            $('#beautify').parent().hide();
+            $sourceText.val(originalSource);
+        },
+
         initSourceSelect: function() {
-            $sourceText.click(function () {
+            $sourceText.on('click', function() {
                 $sourceText.select();
             });
-            $sourceText.keydown(function (e) {
+            $sourceText.keydown(function(e) {
                 e.preventDefault();
                 e.stopPropagation();
                 return false;

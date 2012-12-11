@@ -62,18 +62,27 @@ a, a:link, a:hover, a:active, a:visited {
 }
 
 h1 {
-    font-size: 1.8em;
+    font-size: 1.6em;
     margin: 0;
     overflow: hidden;
 }
 h1 a, h1 a:link, h1 a:hover, h1 a:active, h1 a:visited {
     text-decoration: none;
-    font-size: 0.8em;
+    font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+    font-size: 0.75em;
     font-weight: normal;
 }
 
+body.result h2 {
+    font-size: 1.1em;
+}
+
+body.result h3 {
+    font-size: 0.9em;
+}
+
 body.error h1 {
-    color: #ff0000;
+    color: #f00;
 }
 
 #url {
@@ -88,11 +97,10 @@ body.error h1 {
     height: 450px;
 }
 #source-text.nowrap {
-    white-space: nowrap;
+    /*white-space: nowrap;*/
     overflow:    scroll;
-    overflow-y:  hidden;
-    overflow-x:  scroll;
-    overflow:    -moz-scrollbars-horizontal;
+    overflow-y:  scroll;
+    overflow-x:  auto;
 }
 
 #error {

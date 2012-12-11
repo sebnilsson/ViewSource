@@ -9,20 +9,18 @@ namespace ViewSource.Controllers
 {
     public class HomeController : Controller
     {
-        //
-        // GET: /Home/
-
         public ActionResult Index()
         {
             return this.View();
         }
 
+        [OutputCache(Duration = 300, VaryByParam = "url;encoding")]
         public ActionResult Result(string url, string encoding)
         {
             string correctedUrl = GetUrl((url ?? string.Empty).ToLowerInvariant());
             encoding = GetEncoding((encoding ?? string.Empty).ToLowerInvariant());
 
-            if(!correctedUrl.Equals(url, StringComparison.InvariantCulture))
+            if (!correctedUrl.Equals(url, StringComparison.InvariantCulture))
             {
                 var redirect = Url.RouteUrl("Result", new { url = correctedUrl, encoding });
                 return this.RedirectPermanent(redirect);
@@ -35,10 +33,12 @@ namespace ViewSource.Controllers
             }
             catch (Exception ex)
             {
+                //Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 return this.View("Error", (object)ex.Message);
             }
 
-            var result = new SourceResult { Encoding = encoding, Source = source, Url = url };
+            int length = source.Length;
+            var result = new SourceResult(url, source, length) { Encoding = encoding, };
             return this.View(result);
         }
 
