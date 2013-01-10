@@ -103,5 +103,11 @@
         $('html, body').animate({
             scrollTop: scrollDestination
         }, 500);
+    } else {
+        setTimeout(function () {
+            if ($(document).scrollTop() < 1) {
+                window.scrollTo(0, 1);
+            }
+        }, 1000);
     }
 }(window, document));

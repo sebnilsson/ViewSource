@@ -8,8 +8,9 @@ namespace ViewSource
         {
             // SiteStyles
             Bundle.Css()
-                  .Add("~/Libraries/Normalize.css")
-                  .Add("~/Content/Site.css")
+                  .Add("~/libraries/Normalize.css")
+                  .Add("~/libraries/add2home/add2home.css")
+                  .Add("~/content/Site.css")
                   .AsCached("bundled-site", "~/assets/css/bundled-site.js");
 
             // HeadScripts
@@ -19,8 +20,9 @@ namespace ViewSource
 
             // SiteScripts
             Bundle.JavaScript()
-                  .Add("~/Libraries/beautify-html.js")
-                  .Add("~/Content/Site.js")
+                  .Add("~/libraries/beautify-html.js")
+                  .Add("~/libraries/add2home/add2home.js")
+                  .Add("~/content/Site.js")
                   .AsCached("bundled-site", "~/assets/js/bundled-site.js");
         }
     }
