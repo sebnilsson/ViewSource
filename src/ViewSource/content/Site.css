@@ -49,6 +49,10 @@ a, a:link, a:hover, a:active, a:visited {
     padding-top: 0;
 }
 
+#script-links, #links {
+    overflow: auto;
+}
+
 #footer {
     background-color: #555;
     color: #ccc;

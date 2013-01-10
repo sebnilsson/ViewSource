@@ -51,34 +51,38 @@
         @if (Model.ScriptLinks.Any())
         {
             <h3>Scripts</h3>
-            <ul>
-                @foreach (var link in Model.ScriptLinks)
-                {
-                    <li>
-                        @Html.RouteLink(link.Title, "Result", new { url = link.Url.ToString() })
-                        @if (!string.IsNullOrWhiteSpace(link.Type))
-                        {
-                            <text>(@link.Type)</text>
-                        }
-                    </li>
-                }
-            </ul>
+            <div id="script-links">
+                <ul>
+                    @foreach (var link in Model.ScriptLinks)
+                    {
+                        <li>
+                            @Html.RouteLink(link.Title, "Result", new { url = link.Url.ToString() })
+                            @if (!string.IsNullOrWhiteSpace(link.Type))
+                            {
+                                <text>(@link.Type)</text>
+                            }
+                        </li>
+                    }
+                </ul>
+            </div>
         }
         @if (Model.Links.Any())
         {
             <h3>Links</h3>
-            <ul>
-                @foreach (var link in Model.Links)
-                {
-                    <li>
-                        @Html.RouteLink(link.Title, "Result", new { url = link.Url.ToString() })
-                        @if (!string.IsNullOrWhiteSpace(link.Type))
-                        {
-                            <text>(@link.Type)</text>
-                        }
-                    </li>
-                }
-            </ul>
+            <div id="links">
+                <ul>
+                    @foreach (var link in Model.Links)
+                    {
+                        <li>
+                            @Html.RouteLink(link.Title, "Result", new { url = link.Url.ToString() })
+                            @if (!string.IsNullOrWhiteSpace(link.Type))
+                            {
+                                <text>(@link.Type)</text>
+                            }
+                        </li>
+                    }
+                </ul>
+            </div>
         }
     </div>
 }
