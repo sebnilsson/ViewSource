@@ -118,6 +118,10 @@ body.result {
     font-style: italic;
 }
 
+.source-code-link {
+    text-align: right;
+}
+
 /* Smartphone */
 @media screen and (max-width: 320px) {
     body {
